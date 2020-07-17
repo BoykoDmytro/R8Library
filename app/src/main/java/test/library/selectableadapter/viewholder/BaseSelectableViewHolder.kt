@@ -12,6 +12,8 @@ abstract class BaseSelectableViewHolder<T>(
     @LayoutRes layoutId: Int,
     val listener: OnItemClickListener<T>? = null
 ) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(layoutId, parent, false)) {
+
     abstract fun bind(data: T, isSelected: Boolean, action: () -> Unit)
+
     abstract fun getCheckableItem(): Checkable
 }

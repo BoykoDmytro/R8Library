@@ -7,11 +7,14 @@ abstract class BaseAdapter<In, Vh : BaseViewHolder<In>> : RecyclerView.Adapter<V
         private const val NO_INDEX = -1
     }
     private var list = mutableListOf<In>()
+
     override fun onBindViewHolder(holder: Vh, position: Int) {
         getItem(position)?.let { holder.bind(it) }
     }
     override fun getItemCount(): Int = list.size
+
     fun getItems(): List<In>? = list
+
     fun setItems(list: List<In>?) {
         list?.let {
             this.list.clear()
@@ -19,19 +22,24 @@ abstract class BaseAdapter<In, Vh : BaseViewHolder<In>> : RecyclerView.Adapter<V
             notifyDataSetChanged()
         }
     }
+
     fun addItem(item: In) {
         list.add(item)
         notifyItemInserted(list.lastIndex)
     }
+
     fun updateItem(item: In, position: Int) {
         list[position] = item
         notifyItemChanged(position)
     }
+
     open fun getItem(position: Int): In? = list.getOrNull(position)
+
     fun removeItem(position: Int) {
         list.removeAt(position)
         notifyItemRemoved(position)
     }
+
     fun removeItem(item: In) {
         val position = list.indexOf(item)
         if (position != NO_INDEX) {

@@ -68,7 +68,9 @@ abstract class BaseSelectionAdapter<In, Vh : BaseSelectableViewHolder<In>>(
     }
 
     override fun getItemCount(): Int = list?.size ?: 0
+
     fun getItems(): List<In>? = list
+
     open fun setItems(list: List<In>?) {
         this.list = list?.toMutableList()
         notifyDataSetChanged()
